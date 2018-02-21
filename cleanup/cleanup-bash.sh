@@ -1,11 +1,54 @@
+#!/bin/bash
+
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 12:40:49
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-21 01:25:11
+# @Last modified time: 2018-02-21 02:54:22
 
-#!/bin/bash
+echo ""
+echo "Move to WORKSPACE"
+cd "$WORKSPACE"
 
-PKG_VERSION=$(cat package.json | grep '"version": "[a-z0-9\.\-]\{5,\}"' | sed 's/"version": "//g' | sed 's/\ //g' | sed 's/",//g')
+echo ""
+if [ -z "$BLUEMIX_ENV" ]; then
+  echo "Missing environment variable BLUEMIX_ENV"
+  exit 1
+elif [ -z "$AIRBRAKE_PROJECT_ID" ]; then
+  echo "Missing environment variable AIRBRAKE_PROJECT_ID"
+  exit 1
+elif [ -z "$AIRBRAKE_PROJECT_KEY" ]; then
+  echo "Missing environment variable AIRBRAKE_PROJECT_KEY"
+  exit 1
+elif [ -z "$BLUEMIX_ENV" ]; then
+  echo "Missing environment variable BLUEMIX_ENV"
+  exit 1
+elif [ -z "$AIRBRAKE_USERNAME" ]; then
+  echo "Missing environment variable AIRBRAKE_USERNAME"
+  exit 1
+elif [ -z "$GIT_URL" ]; then
+  echo "Missing environment variable GIT_URL"
+  exit 1
+elif [ -z "$GIT_COMMIT" ]; then
+  echo "Missing environment variable GIT_COMMIT"
+  exit 1
+elif [ -z "$CLOUDFLARE_ZONE_ID" ]; then
+  echo "Missing environment variable CLOUDFLARE_ZONE_ID"
+  exit 1
+elif [ -z "$CLOUDFLARE_USERNAME" ]; then
+  echo "Missing environment variable CLOUDFLARE_USERNAME"
+  exit 1
+elif [ -z "$CLOUDFLARE_API_KEY" ]; then
+  echo "Missing environment variable CLOUDFLARE_API_KEY"
+  exit 1
+fi
+
+echo ""
+echo "Install JQ"
+sudo apt-get -y jq
+
+echo ""
+echo "Get Library Version"
+PKG_VERSION=$(cat $WORKSPACE/package.json | jq ".version" | sed "s/\"//g")
 
 echo ""
 echo "Let Airbrake know we've deployed a new version"
@@ -24,9 +67,9 @@ echo ""
 echo ""
 echo "Purge Cloudflare cache"
 CLOUDFLARE_URL="https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache"
-echo "- URL: $AIRBRAKE_URL"
+echo "- URL: $CLOUDFLARE_URL"
 CLOUDFLARE_BODY="{\"purge_everything\":true}"
-echo "- BODY: $AIRBRAKE_BODY"
+echo "- BODY: $CLOUDFLARE_BODY"
 
 curl -X DELETE \
   -H "X-Auth-Email: $CLOUDFLARE_USERNAME" \
