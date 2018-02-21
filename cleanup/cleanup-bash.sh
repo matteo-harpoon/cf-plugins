@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PKG_VERSION=${cat package.json | grep '"version": "[a-z0-9\.\-]\{5,\}"' | sed 's/"version": "//g' | sed 's/\ //g' | sed 's/",//g'}
+PKG_VERSION=$(cat package.json | grep '"version": "[a-z0-9\.\-]\{5,\}"' | sed 's/"version": "//g' | sed 's/\ //g' | sed 's/",//g')
 
 echo ""
 echo "Let Airbrake know we've deployed a new version"
