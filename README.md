@@ -4,6 +4,17 @@
 
 **Required Environment Variables**:
 
+* `GITHUB_USERNAME` The username to use for this Pipeline job
+* `BLUEMIX_ENV` Bluemix environment (`development`, `stage` or `production`)
+* `GIT_URL` This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
+* `GIT_COMMIT` This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
+* `AIRBRAKE_PROJECT_ID` Airbrake project id
+* `AIRBRAKE_PROJECT_KEY` Airbrake project key
+* `AIRBRAKE_USERNAME` Name for this Toolchain job
+* `CLOUDFLARE_ZONE_ID` Cloudflare zone id
+* `CLOUDFLARE_USERNAME` Cloudflare account email
+* `CLOUDFLARE_API_KEY` Cloudflare api key
+
 **Job Integration**:
 
 ```
@@ -30,6 +41,8 @@ Build -> Lint -> Test -> Deploy -> Cleanup
 
 **Required Environment Variables**:
 
+* `GITHUB_USERNAME` The username to use for this Pipeline job
+
 **Job Integration**:
 
 ```
@@ -45,6 +58,8 @@ chmod +x cf-plugins/steps/api/build-bash.sh
 #### Lint
 
 **Required Environment Variables**:
+
+* `GITHUB_USERNAME` The username to use for this Pipeline job
 
 **Job Integration**:
 
@@ -62,6 +77,8 @@ chmod +x cf-plugins/steps/api/lint-bash.sh
 
 **Required Environment Variables**:
 
+* `GITHUB_USERNAME` The username to use for this Pipeline job
+
 **Job Integration**:
 
 ```
@@ -78,8 +95,9 @@ chmod +x cf-plugins/steps/api/test-bash.sh
 
 **Required Environment Variables**:
 
-* BLUEMIX_ENV This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
-* CF_APP This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
+* `GITHUB_USERNAME` The username to use for this Pipeline job
+* `BLUEMIX_ENV` Bluemix environment (`development`, `stage` or `production`)
+* `CF_APP` This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
 
 **Job Integration**:
 
@@ -134,6 +152,34 @@ Build -> Deploy -> Cleanup
 
 #### Build
 
+> Git branch must be hacked using chrome HTML inspector:
+>
+> **from**
+> `<option aria-labelledby="branch-label" value="master">master</option>`
+>
+> **to**
+> `<option aria-labelledby="branch-label" value="develop">develop</option>`
+
+**Input**
+* Input settings
+  * Input type: **Git repository**
+  * Git repository: **tweak-builder**
+  * Branch: **develop**
+* Stage trigger
+  * **Run jobs whenever a change is pushed to Git**
+
+**Jobs**
+* *Build*
+  * Build configuration
+    * Builder type: **npm**
+    * Build script: *copy Job Integration code*
+    * Working directory: *leave empty*
+    * Build archive directory: **dist**
+    * Enable test report: *unchecked*
+    * Enable code coverage report: *unchecked*
+  * Run conditions
+    * Stop running this stage if this job fails: *checked*
+
 **Required Environment Variables**:
 
 * `BLUEMIX_ENV` Bluemix environment (`development`, `stage` or `production`)
@@ -153,10 +199,30 @@ chmod +x cf-plugins/steps/builder/build-bash.sh
 
 #### Deploy
 
+**Input**
+* Input settings
+  * Input type: **Build artifacts**
+  * Stage: **Build - Tweak Builder (Development|Stage|Production)**
+  * Job: **Build**
+* Stage trigger
+  * **Run jobs whenever a change is pushed to Git**
+
+**Jobs**
+* *Deploy*
+  * Deploy configuration
+    * Deployer type: **Cloud Foundry**
+    * IBM Cloud region: *choose correct region*
+    * Organization: *choose correct organizaiton*
+    * Space: *choose correct spact (development|stage|production)*
+    * Application name: **Tweak Builder (Development|Stage|Production)**
+  * Run conditions
+    * Stop running this stage if this job fails: *checked*
+    * Only developers in the targeted space can run this stage: *checked*
+
 **Required Environment Variables**:
 
-* BLUEMIX_ENV This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
-* CF_APP This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
+* `BLUEMIX_ENV` Bluemix environment (`development`, `stage` or `production`)
+* `CF_APP` This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
 
 **Job Integration**:
 
@@ -180,6 +246,34 @@ Build -> Deploy -> Cleanup
 
 #### Build
 
+> Git branch must be hacked using chrome HTML inspector:
+>
+> **from**
+> `<option aria-labelledby="branch-label" value="master">master</option>`
+>
+> **to**
+> `<option aria-labelledby="branch-label" value="develop">develop</option>`
+
+**Input**
+* Input settings
+  * Input type: **Git repository**
+  * Git repository: **tweak-dashboard**
+  * Branch: **develop**
+* Stage trigger
+  * **Run jobs whenever a change is pushed to Git**
+
+**Jobs**
+* *Build*
+  * Build configuration
+    * Builder type: **npm**
+    * Build script: *copy Job Integration code*
+    * Working directory: *leave empty*
+    * Build archive directory: **dist**
+    * Enable test report: *unchecked*
+    * Enable code coverage report: *unchecked*
+  * Run conditions
+    * Stop running this stage if this job fails: *checked*
+
 **Required Environment Variables**:
 
 * `BLUEMIX_ENV` Bluemix environment (`development`, `stage` or `production`)
@@ -199,10 +293,30 @@ chmod +x cf-plugins/steps/dashboard/build-bash.sh
 
 #### Deploy
 
+**Input**
+* Input settings
+  * Input type: **Build artifacts**
+  * Stage: **Build - Tweak Dashboard (Development|Stage|Production)**
+  * Job: **Build**
+* Stage trigger
+  * **Run jobs whenever a change is pushed to Git**
+
+**Jobs**
+* *Deploy*
+  * Deploy configuration
+    * Deployer type: **Cloud Foundry**
+    * IBM Cloud region: *choose correct region*
+    * Organization: *choose correct organizaiton*
+    * Space: *choose correct spact (development|stage|production)*
+    * Application name: **Tweak Dashboard (Development|Stage|Production)**
+  * Run conditions
+    * Stop running this stage if this job fails: *checked*
+    * Only developers in the targeted space can run this stage: *checked*
+
 **Required Environment Variables**:
 
-* BLUEMIX_ENV This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
-* CF_APP This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
+* `BLUEMIX_ENV` Bluemix environment (`development`, `stage` or `production`)
+* `CF_APP` This from [Pipeline](https://console.bluemix.net/docs/services/ContinuousDelivery/pipeline_deploy_var.html#deliverypipeline_environment)
 
 **Job Integration**:
 

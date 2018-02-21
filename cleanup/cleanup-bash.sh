@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 12:40:49
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-21 02:54:22
+# @Last modified time: 2018-02-21 03:45:54
 
 echo ""
 echo "Move to WORKSPACE"
@@ -18,9 +18,6 @@ elif [ -z "$AIRBRAKE_PROJECT_ID" ]; then
   exit 1
 elif [ -z "$AIRBRAKE_PROJECT_KEY" ]; then
   echo "Missing environment variable AIRBRAKE_PROJECT_KEY"
-  exit 1
-elif [ -z "$BLUEMIX_ENV" ]; then
-  echo "Missing environment variable BLUEMIX_ENV"
   exit 1
 elif [ -z "$AIRBRAKE_USERNAME" ]; then
   echo "Missing environment variable AIRBRAKE_USERNAME"
