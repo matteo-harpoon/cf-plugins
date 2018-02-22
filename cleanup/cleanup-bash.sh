@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 12:40:49
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 01:57:45
+# @Last modified time: 2018-02-22 03:02:14
 
 echo ""
 echo "Move to WORKSPACE"
@@ -44,12 +44,17 @@ echo "$PKG_VERSION"
 
 echo ""
 echo "Get GIT Commit"
-GIT_COMMIT=$(cat $WORKSPACE/pipeline.json | jq ".git.commit" | sed "s/\"//g")
+GIT_COMMIT=$(cat $WORKSPACE/package.json | jq ".git.commit" | sed "s/\"//g")
 echo "$GIT_COMMIT"
 
 echo ""
+echo "Get GIT Branch"
+GIT_BRANCH=$(cat $WORKSPACE/package.json | jq ".git.branch" | sed "s/\"//g")
+echo "$GIT_BRANCH"
+
+echo ""
 echo "Get GIT URL"
-GIT_URL=$(cat $WORKSPACE/pipeline.json | jq ".git.url" | sed "s/\"//g")
+GIT_URL=$(cat $WORKSPACE/package.json | jq ".git.url" | sed "s/\"//g")
 echo "$GIT_URL"
 
 echo ""

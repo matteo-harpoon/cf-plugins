@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 01:57:23
+# @Last modified time: 2018-02-22 03:01:11
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -25,9 +25,11 @@ echo "Install JQ"
 sudo dpkg -i $WORKSPACE/cf-plugins/jq/jq_1.3-1.1ubuntu1_amd64.deb
 
 echo ""
-echo "Store pipeline.json"
-(echo "{}" | jq ".git.commit=\"$GIT_COMMIT\"" | jq ".git.url=\"$GIT_URL\"") > $WORKSPACE/pipeline.json
-cat $WORKSPACE/pipeline.json
+echo "Store GIT vars on $WORKSPACE/package.json"
+(cat package.json | jq ".git.branch=\"$GIT_BRANCH\"" | jq ".git.commit=\"$GIT_COMMIT\"" | jq ".git.url=\"$GIT_URL\"") > $WORKSPACE/package.json.tmp
+rm $WORKSPACE/package.json
+mv $WORKSPACE/package.json.tmp $WORKSPACE/package.json
+cat $WORKSPACE/package.json
 
 echo ""
 echo "Clone Submodules:"
