@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-21 02:54:15
+# @Last modified time: 2018-02-22 08:40:28
 
 echo ""
 echo "Move to WORKSPACE"
@@ -38,4 +38,4 @@ cf check-manifest "${CF_APP}" -f "$BLUEMIX_MANIFEST"
 
 echo ""
 echo "Deploy (zero-downtime-push"
-cf zero-downtime-push "${CF_APP}" -f "$BLUEMIX_MANIFEST" -p .
+cf zero-downtime-push "${CF_APP}" -f "$BLUEMIX_MANIFEST" -p $WORKSPACE

@@ -25,6 +25,10 @@ echo ""
 echo "Run Cleanup"
 chmod +x cf-plugins/cleanup/cleanup-bash.sh
 ./cf-plugins/cleanup/cleanup-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 ## Steps
@@ -53,6 +57,10 @@ echo ""
 echo "Run Build"
 chmod +x cf-plugins/steps/api/build-bash.sh
 ./cf-plugins/steps/api/build-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 #### Lint
@@ -71,6 +79,10 @@ echo ""
 echo "Run Lint"
 chmod +x cf-plugins/steps/api/lint-bash.sh
 ./cf-plugins/steps/api/lint-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 #### Test
@@ -89,6 +101,10 @@ echo ""
 echo "Run Test"
 chmod +x cf-plugins/steps/api/test-bash.sh
 ./cf-plugins/steps/api/test-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 #### Deploy
@@ -109,6 +125,10 @@ echo ""
 echo "Run Deploy"
 chmod +x cf-plugins/steps/api/deploy-bash.sh
 ./cf-plugins/steps/api/deploy-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 ### SDK
@@ -140,6 +160,10 @@ echo ""
 echo "Run Generate"
 chmod +x cf-plugins/steps/sdk/generate-js-unified-bash.sh
 ./cf-plugins/steps/sdk/generate-js-unified-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 ### Builder
@@ -195,6 +219,10 @@ echo ""
 echo "Run Build"
 chmod +x cf-plugins/steps/builder/build-bash.sh
 ./cf-plugins/steps/builder/build-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 #### Deploy
@@ -234,6 +262,10 @@ echo ""
 echo "Run Deploy"
 chmod +x cf-plugins/steps/builder/deploy-bash.sh
 ./cf-plugins/steps/builder/deploy-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 ### Dashboard
@@ -289,6 +321,10 @@ echo ""
 echo "Run Build"
 chmod +x cf-plugins/steps/dashboard/build-bash.sh
 ./cf-plugins/steps/dashboard/build-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```
 
 #### Deploy
@@ -328,4 +364,8 @@ echo ""
 echo "Run Deploy"
 chmod +x cf-plugins/steps/dashboard/deploy-bash.sh
 ./cf-plugins/steps/dashboard/deploy-bash.sh
+
+echo ""
+echo "Clean cf-plugins"
+rm -rf cf-plugins
 ```

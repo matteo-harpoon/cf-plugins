@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-21 02:54:48
+# @Last modified time: 2018-02-22 08:40:31
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -73,7 +73,7 @@ find exported/JavaScript/Unified -mindepth 1 -not -path "exported/JavaScript/Uni
 echo ""
 echo "Generating Library"
 node codegen.genJavaScriptUnified.js
-node codegen.genJavaScriptUnifiedAngularModels.js --file ./exported/tweakApi.json --folder ./exported/JavaScript/Unified/models.angular/
+node codegen.genJavaScriptUnifiedAngularModels.js --file $WORKSPACE/exported/tweakApi.json --folder $WORKSPACE/exported/JavaScript/Unified/models.angular/
 
 echo ""
 echo "Configure GIT"
