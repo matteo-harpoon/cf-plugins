@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 09:27:35
+# @Last modified time: 2018-02-22 01:56:45
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -45,8 +45,7 @@ npm install
 
 echo ""
 echo "Install JQ"
-sudo apt-get update
-sudo apt-get install -y jq
+sudo dpkg -i $WORKSPACE/cf-plugins/jq/jq_1.3-1.1ubuntu1_amd64.deb
 
 echo ""
 echo "Get Library Version"
@@ -59,8 +58,8 @@ echo "$GIT_COMMIT_BODY"
 
 echo ""
 echo "Export API Definition"
-NODE_ENV="$BLUEMIX_ENV" node codegen.gen.apiDefJSON.js
-cat $WORKSPACE/exported/tweakApi.json
+NODE_ENV="$BLUEMIX_ENV" node codegen.gen.apiDefJSON.js > /dev/null
+ls $WORKSPACE/exported/tweakAPI.json
 
 echo ""
 echo "Switch Library to $GIT_BRANCH"
@@ -70,14 +69,17 @@ cd "$WORKSPACE"
 
 echo ""
 echo "Remove Old Library"
-find exported/JavaScript/Unified -mindepth 1 -not -path "exported/JavaScript/Unified/.git"  -exec rm -rf {} \; >&/dev/null
+mv exported/JavaScript/Unified/.git exported/JavaScript/Unified.git.bk
+rm -rf exported/JavaScript/Unified/
+mkdir exported/JavaScript/Unified
+mv exported/JavaScript/Unified.git.bk exported/JavaScript/Unified/.git
 
 ls -la ./exported
 
 echo ""
 echo "Generating Library"
-node codegen.genJavaScriptUnified.js
-node codegen.genJavaScriptUnifiedAngularModels.js --file $WORKSPACE/exported/tweakApi.json --folder $WORKSPACE/exported/JavaScript/Unified/models.angular/
+node codegen.genJavaScriptUnified.js > /dev/null
+node codegen.genJavaScriptUnifiedAngularModels.js --file $WORKSPACE/exported/tweakAPI.json --folder $WORKSPACE/exported/JavaScript/Unified/models.angular/ > /dev/null
 
 echo ""
 echo "Configure GIT"

@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 12:30:46
+# @Last modified time: 2018-02-22 01:57:13
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -27,8 +27,7 @@ fi
 
 echo ""
 echo "Install JQ"
-sudo apt-get update
-sudo apt-get install -y jq
+sudo dpkg -i $WORKSPACE/cf-plugins/jq/jq_1.3-1.1ubuntu1_amd64.deb
 
 echo ""
 echo "Store pipeline.json"

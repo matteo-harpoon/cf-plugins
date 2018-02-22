@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 12:40:49
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 12:29:54
+# @Last modified time: 2018-02-22 01:57:45
 
 echo ""
 echo "Move to WORKSPACE"
@@ -35,8 +35,7 @@ fi
 
 echo ""
 echo "Install JQ"
-sudo apt-get update
-sudo apt-get install -y jq
+sudo dpkg -i $WORKSPACE/cf-plugins/jq/jq_1.3-1.1ubuntu1_amd64.deb
 
 echo ""
 echo "Get Library Version"
