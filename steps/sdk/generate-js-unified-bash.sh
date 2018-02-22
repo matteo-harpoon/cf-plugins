@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 08:40:31
+# @Last modified time: 2018-02-22 08:59:33
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -45,7 +45,7 @@ npm install
 
 echo ""
 echo "Install JQ"
-sudo apt-get -y jq
+sudo apt-get install -y jq
 
 echo ""
 echo "Get Library Version"
@@ -59,16 +59,19 @@ echo "$GIT_COMMIT_BODY"
 echo ""
 echo "Export API Definition"
 NODE_ENV="$BLUEMIX_ENV" node codegen.gen.apiDefJSON.js
+cat $WORKSPACE/exported/tweakApi.json
 
 echo ""
 echo "Switch Library to $GIT_BRANCH"
 cd "exported/JavaScript/Unified"
 git checkout $GIT_BRANCH
-cd "../../.."
+cd "$WORKSPACE"
 
 echo ""
 echo "Remove Old Library"
 find exported/JavaScript/Unified -mindepth 1 -not -path "exported/JavaScript/Unified/.git"  -exec rm -rf {} \; >&/dev/null
+
+ls -la ./exported
 
 echo ""
 echo "Generating Library"

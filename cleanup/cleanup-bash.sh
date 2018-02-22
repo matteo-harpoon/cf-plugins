@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 12:40:49
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-21 03:45:54
+# @Last modified time: 2018-02-22 08:59:36
 
 echo ""
 echo "Move to WORKSPACE"
@@ -41,7 +41,7 @@ fi
 
 echo ""
 echo "Install JQ"
-sudo apt-get -y jq
+sudo apt-get install -y jq
 
 echo ""
 echo "Get Library Version"
