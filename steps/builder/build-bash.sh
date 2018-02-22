@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 03:01:27
+# @Last modified time: 2018-02-22 04:17:05
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -54,7 +54,7 @@ npm run "update-sdk-$BLUEMIX_ENV"
 
 echo ""
 echo "Generate Dist"
-NODE_ENV=$BLUEMIX_ENV npm run dist-pack
+NODE_ENV=$BLUEMIX_ENV gulp build
 
 echo ""
 echo "Generated files into dist"
