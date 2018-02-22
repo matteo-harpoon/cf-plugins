@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 08:59:33
+# @Last modified time: 2018-02-22 09:04:19
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -45,6 +45,7 @@ npm install
 
 echo ""
 echo "Install JQ"
+sudo apt-get update
 sudo apt-get install -y jq
 
 echo ""
