@@ -3,13 +3,32 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-21 02:54:27
+# @Last modified time: 2018-02-22 12:27:54
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
 echo ""
 echo "Move to WORKSPACE"
 cd "$WORKSPACE"
+
+echo ""
+if [ -z "$GIT_URL" ]; then
+  echo "Missing environment variable GIT_URL"
+  exit 1
+elif [ -z "$GIT_COMMIT" ]; then
+  echo "Missing environment variable GIT_COMMIT"
+  exit 1
+fi
+
+echo ""
+echo "Install JQ"
+sudo apt-get update
+sudo apt-get install -y jq
+
+echo ""
+echo "Store pipeline.json"
+(echo "{}" | jq ".git.commit=\"$GIT_COMMIT\"" | jq ".git.url=\"$GIT_URL\"") > $WORKSPACE/pipeline.json
+cat $WORKSPACE/pipeline.json
 
 echo ""
 echo "Clone Submodules:"

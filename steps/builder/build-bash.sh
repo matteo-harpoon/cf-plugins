@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-21 03:12:14
+# @Last modified time: 2018-02-22 12:30:49
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -17,7 +17,23 @@ if [ -z "$BLUEMIX_ENV" ]; then
 elif [ -z "$ARCHIVE_DIR" ]; then
   echo "Missing environment variable ARCHIVE_DIR"
   exit 1
+elif [ -z "$GIT_URL" ]; then
+  echo "Missing environment variable GIT_URL"
+  exit 1
+elif [ -z "$GIT_COMMIT" ]; then
+  echo "Missing environment variable GIT_COMMIT"
+  exit 1
 fi
+
+echo ""
+echo "Install JQ"
+sudo apt-get update
+sudo apt-get install -y jq
+
+echo ""
+echo "Store pipeline.json"
+(echo "{}" | jq ".git.commit=\"$GIT_COMMIT\"" | jq ".git.url=\"$GIT_URL\"") > $ARCHIVE_DIR/pipeline.json
+cat $ARCHIVE_DIR/pipeline.json
 
 echo ""
 echo "Clone Submodules:"

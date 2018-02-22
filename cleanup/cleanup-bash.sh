@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 12:40:49
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 09:04:22
+# @Last modified time: 2018-02-22 12:29:54
 
 echo ""
 echo "Move to WORKSPACE"
@@ -21,12 +21,6 @@ elif [ -z "$AIRBRAKE_PROJECT_KEY" ]; then
   exit 1
 elif [ -z "$AIRBRAKE_USERNAME" ]; then
   echo "Missing environment variable AIRBRAKE_USERNAME"
-  exit 1
-elif [ -z "$GIT_URL" ]; then
-  echo "Missing environment variable GIT_URL"
-  exit 1
-elif [ -z "$GIT_COMMIT" ]; then
-  echo "Missing environment variable GIT_COMMIT"
   exit 1
 elif [ -z "$CLOUDFLARE_ZONE_ID" ]; then
   echo "Missing environment variable CLOUDFLARE_ZONE_ID"
@@ -47,6 +41,29 @@ sudo apt-get install -y jq
 echo ""
 echo "Get Library Version"
 PKG_VERSION=$(cat $WORKSPACE/package.json | jq ".version" | sed "s/\"//g")
+echo "$PKG_VERSION"
+
+echo ""
+echo "Get GIT Commit"
+GIT_COMMIT=$(cat $WORKSPACE/pipeline.json | jq ".git.commit" | sed "s/\"//g")
+echo "$GIT_COMMIT"
+
+echo ""
+echo "Get GIT URL"
+GIT_URL=$(cat $WORKSPACE/pipeline.json | jq ".git.url" | sed "s/\"//g")
+echo "$GIT_URL"
+
+echo ""
+if [ -z "$PKG_VERSION" ]; then
+  echo "Missing environment variable PKG_VERSION"
+  exit 1
+elif [ -z "$GIT_COMMIT" ]; then
+  echo "Missing environment variable GIT_COMMIT"
+  exit 1
+elif [ -z "$GIT_URL" ]; then
+  echo "Missing environment variable GIT_URL"
+  exit 1
+fi
 
 echo ""
 echo "Let Airbrake know we've deployed a new version"
