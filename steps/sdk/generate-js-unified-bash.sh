@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 01:56:45
+# @Last modified time: 2018-02-22 02:27:44
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -59,7 +59,6 @@ echo "$GIT_COMMIT_BODY"
 echo ""
 echo "Export API Definition"
 NODE_ENV="$BLUEMIX_ENV" node codegen.gen.apiDefJSON.js > /dev/null
-ls $WORKSPACE/exported/tweakAPI.json
 
 echo ""
 echo "Switch Library to $GIT_BRANCH"
@@ -79,7 +78,7 @@ ls -la ./exported
 echo ""
 echo "Generating Library"
 node codegen.genJavaScriptUnified.js > /dev/null
-node codegen.genJavaScriptUnifiedAngularModels.js --file $WORKSPACE/exported/tweakAPI.json --folder $WORKSPACE/exported/JavaScript/Unified/models.angular/ > /dev/null
+node codegen.genJavaScriptUnifiedAngularModels.js --file $WORKSPACE/exported/tweakApi.json --folder $WORKSPACE/exported/JavaScript/Unified/models.angular/ > /dev/null
 
 echo ""
 echo "Configure GIT"
