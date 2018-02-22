@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 02:27:44
+# @Last modified time: 2018-02-22 03:52:56
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -73,7 +73,7 @@ rm -rf exported/JavaScript/Unified/
 mkdir exported/JavaScript/Unified
 mv exported/JavaScript/Unified.git.bk exported/JavaScript/Unified/.git
 
-ls -la ./exported
+ls exported/JavaScript/Unified
 
 echo ""
 echo "Generating Library"
@@ -89,8 +89,8 @@ git config user.email "$GITHUB_USER_EMAIL"
 echo ""
 echo "Update Repository URL"
 LIB_GIT_URL=$(git remote get-url origin | sed 's/\/\/github.com/\/\/$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/')
-git remote set-url origin "$LIB_GIT_URL"
-git remote get-url origin
+echo "$ git remote add pipeline $LIB_GIT_URL"
+git remote add pipeline "$LIB_GIT_URL"
 
 echo ""
 echo "Commit code"
@@ -99,4 +99,4 @@ git commit -m "$GIT_COMMIT_BODY"
 
 echo ""
 echo "Push code"
-git push origin $GIT_BRANCH
+git push pipeline $GIT_BRANCH
