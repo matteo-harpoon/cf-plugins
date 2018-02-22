@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 08:40:52
+# @Last modified time: 2018-02-22 09:50:37
 
 echo ""
 echo "Move to WORKSPACE"
@@ -29,7 +29,7 @@ rm -rf cf-plugins
 
 echo ""
 echo "Set Manifest"
-BLUEMIX_MANIFEST="server/bluemix/manifest.$BLUEMIX_ENV.yaml"
+BLUEMIX_MANIFEST="bluemix/manifest.$BLUEMIX_ENV.yaml"
 echo "$BLUEMIX_MANIFEST"
 
 echo ""
