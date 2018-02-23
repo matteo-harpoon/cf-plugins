@@ -100,3 +100,15 @@ git commit -m "$GIT_COMMIT_BODY"
 echo ""
 echo "Push code"
 git push pipeline $GIT_BRANCH
+
+echo ""
+echo "Back to Workspace"
+cd "$WORKSPACE"
+
+echo ""
+echo "Back to Workspace"
+cd "$WORKSPACE"
+
+echo ""
+echo "Generated files into exported/JavaScript/Unified"
+ls $ARCHIVE_DIR
