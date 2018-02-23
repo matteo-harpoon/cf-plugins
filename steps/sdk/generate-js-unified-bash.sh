@@ -88,7 +88,7 @@ git config user.email "$GITHUB_USER_EMAIL"
 
 echo ""
 echo "Update Repository URL"
-LIB_GIT_URL=$(git remote get-url origin | sed 's/\/\/github.com/\/\/$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/')
+LIB_GIT_URL=$(git config --get remote.origin.url | sed 's/\/\/github.com/\/\/username:password@github.com/' | sed 's/username/'$GITHUB_USERNAME'/' | sed 's/password/'$GITHUB_PASSWORD'/')
 echo "$ git remote add pipeline $LIB_GIT_URL"
 git remote add pipeline "$LIB_GIT_URL"
 
