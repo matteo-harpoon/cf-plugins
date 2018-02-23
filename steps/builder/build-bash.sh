@@ -54,7 +54,7 @@ npm run "update-sdk-$BLUEMIX_ENV"
 
 echo ""
 echo "Generate Dist"
-NODE_ENV=$BLUEMIX_ENV gulp build
+NODE_ENV=$BLUEMIX_ENV $WORKSPACE/node_modules/.bin/gulp build
 
 echo ""
 echo "Generated files into dist"
