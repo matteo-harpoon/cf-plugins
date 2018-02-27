@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 03:01:11
+# @Last modified time: 2018-02-27 11:58:38
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -46,3 +46,7 @@ npm install
 echo ""
 echo "Compute locales"
 npm run locales-compute
+
+echo ""
+echo "Create local tmp dir"
+mkdir $WORKSPACE/tmp
