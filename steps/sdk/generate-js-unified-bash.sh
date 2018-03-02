@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 03:52:56
+# @Last modified time: 2018-03-02 09:46:07
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -64,6 +64,7 @@ echo ""
 echo "Switch Library to $GIT_BRANCH"
 cd "exported/JavaScript/Unified"
 git checkout $GIT_BRANCH
+git pull origin $GIT_BRANCH
 cd "$WORKSPACE"
 
 echo ""
