@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-27 11:58:38
+# @Last modified time: 2018-03-02 09:03:04
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -34,6 +34,12 @@ cat $WORKSPACE/package.json
 echo ""
 echo "Clone Submodules:"
 git submodule update --init --recursive
+
+echo ""
+echo "Use Development Tweak Button:"
+cd $WORKSPACE/assets/tweak-button
+git checkout develop
+cd $WORKSPACE
 
 echo ""
 echo "Remove package-lock.json for safety"
