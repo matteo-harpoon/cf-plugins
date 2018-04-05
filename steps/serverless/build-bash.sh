@@ -15,9 +15,6 @@ echo ""
 if [ -z "$BLUEMIX_ENV" ]; then
   echo "Missing environment variable BLUEMIX_ENV"
   exit 1
-elif [ -z "$ARCHIVE_DIR" ]; then
-  echo "Missing environment variable ARCHIVE_DIR"
-  exit 1
 elif [ -z "$GIT_URL" ]; then
   echo "Missing environment variable GIT_URL"
   exit 1

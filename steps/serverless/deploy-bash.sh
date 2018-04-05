@@ -28,5 +28,9 @@ fi
 # serverless config credentials --provider aws --key "$AWS_ACCESS_KEY_ID" --secret "$AWS_SECRET_ACCESS_KEY" --profile tweak-serverless --overwrite
 
 echo ""
+echo "Install Serverless"
+npm install -g serverless
+
+echo ""
 echo "Deploy"
 serverless deploy
