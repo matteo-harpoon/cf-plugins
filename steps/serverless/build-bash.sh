@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 04:16:59
+# @Last modified time: 2018-04-06 12:07:45
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -67,6 +67,10 @@ git submodule update --init --recursive
 echo ""
 echo "Remove package-lock.json for safety"
 rm package-lock.json
+
+echo ""
+echo "Install NPM@5"
+npm install -g npm@5
 
 echo ""
 echo "Set NPM Company and Token"
