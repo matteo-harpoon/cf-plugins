@@ -15,6 +15,12 @@ echo ""
 if [ -z "$BLUEMIX_ENV" ]; then
   echo "Missing environment variable BLUEMIX_ENV"
   exit 1
+elif [ -< "$BITBUCKET_USER" ]; then
+  echo "Missing environment variable BITBUCKET_USER"
+  exit 1
+elif [ -< "$GITHUB_USER" ]; then
+  echo "Missing environment variable GITHUB_USER"
+  exit 1
 elif [ -z "$GIT_URL" ]; then
   echo "Missing environment variable GIT_URL"
   exit 1
@@ -45,6 +51,15 @@ cat $WORKSPACE/package.json
 
 echo ""
 echo "Clone Submodules:"
+
+cat .gitmodules | sed -r s/bitbucket.org/$BITBUCKET_USER@bitbucket.org/ > .gitmodules.tmp
+rm .gitmodules
+mv .gitmodules.tmp .gitmodules
+
+cat .gitmodules | sed -r s/github.com/$GITHUB_USER@github.com/ > .gitmodules.tmp
+rm .gitmodules
+mv .gitmodules.tmp .gitmodules
+
 git submodule update --init --recursive
 
 echo ""
