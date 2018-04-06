@@ -28,8 +28,21 @@ fi
 # serverless config credentials --provider aws --key "$AWS_ACCESS_KEY_ID" --secret "$AWS_SECRET_ACCESS_KEY" --profile tweak-serverless --overwrite
 
 echo ""
+echo "Remove package-lock.json for safety"
+rm package-lock.json
+
+echo ""
 echo "Install Serverless"
 npm install -g serverless
+
+echo ""
+echo "Set NPM Company and Token"
+npm config set "$NPM_COMPANY:registry" "https://$NPM_URL/"
+npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
+
+echo ""
+echo "Install dependencies"
+npm install
 
 echo ""
 echo "Deploy"
