@@ -46,16 +46,16 @@ cat $WORKSPACE/package.json
 echo ""
 echo "Clone Submodules:"
 
-if [ -z "$BITBUCKET_USERNAME" ]; then
-  if [ -z "$BITBUCKET_PASSWORD" ]; then
+if [ -n "$BITBUCKET_USERNAME" ]; then
+  if [ -n "$BITBUCKET_PASSWORD" ]; then
     cat .gitmodules | sed -r s/bitbucket.org/$BITBUCKET_USERNAME:$BITBUCKET_PASSWORD@bitbucket.org/ > .gitmodules.tmp
     rm .gitmodules
     mv .gitmodules.tmp .gitmodules
   fi
 fi
 
-if [ -z "$GITHUB_USERNAME" ]; then
-  if [ -z "$GITHUB_PASSWORD" ]; then
+if [ -n "$GITHUB_USERNAME" ]; then
+  if [ -n "$GITHUB_PASSWORD" ]; then
     cat .gitmodules | sed -r s/github.com/$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/ > .gitmodules.tmp
     rm .gitmodules
     mv .gitmodules.tmp .gitmodules
