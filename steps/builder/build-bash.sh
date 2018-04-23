@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-04-23 07:18:10
+# @Last modified time: 2018-04-23 08:00:33
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -61,6 +61,10 @@ npm run "update-sdk-$BLUEMIX_ENV"
 echo ""
 echo "Generate Dist"
 NODE_ENV=$BLUEMIX_ENV $WORKSPACE/node_modules/.bin/gulp build
+
+echo ""
+echo "Store NPM Company and Token"
+printf "//$NPM_URL/:_authToken=$NPM_TOKEN\n$NPM_COMPANY:registry=https://$NPM_URL/" > "$ARCHIVE_DIR/.npmrc"
 
 echo ""
 echo "Generated files into dist"
