@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 04:17:05
+# @Last modified time: 2018-04-23 07:18:10
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -44,6 +44,11 @@ git submodule update --init --recursive
 echo ""
 echo "Remove package-lock.json for safety"
 rm package-lock.json
+
+echo ""
+echo "Set NPM Company and Token"
+npm config set "$NPM_COMPANY:registry" "https://$NPM_URL/"
+npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
 
 echo ""
 echo "Install dependencies"
