@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-04-25 03:53:04
+# @Last modified time: 2018-04-25 04:28:26
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -127,8 +127,8 @@ cd $ARCHIVE_DIR
 
 echo ""
 echo "Create Serverless archive"
-$ARCHIVE_DIR/node_modules/.bin/serverless package --package $ARCHIVE_DIR/serverless-package
+./node_modules/.bin/serverless package --package $ARCHIVE_DIR/serverless-package
 
 echo ""
 echo "Generated files into dist"
-ls $ARCHIVE_DIR
+ls .
