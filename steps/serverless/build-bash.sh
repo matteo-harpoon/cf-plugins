@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-04-25 03:30:47
+# @Last modified time: 2018-04-25 03:53:04
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -87,6 +87,12 @@ do
     echo ""
     echo "Move to $LAMBDA_MODULE"
     cd "$LAMBDA_MODULE"
+
+    echo ""
+    echo "Get to latest commit"
+    git fetch origin
+    git checkout $GIT_BRANCH
+    git pull origin $GIT_BRANCH
 
     echo ""
     echo "Install dependencies"
