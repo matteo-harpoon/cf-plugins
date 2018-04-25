@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-04-06 12:07:45
+# @Last modified time: 2018-04-25 03:30:47
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -69,10 +69,6 @@ echo "Remove package-lock.json for safety"
 rm package-lock.json
 
 echo ""
-echo "Install NPM@5"
-npm install -g npm@5
-
-echo ""
 echo "Set NPM Company and Token"
 npm config set "$NPM_COMPANY:registry" "https://$NPM_URL/"
 npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
@@ -80,6 +76,31 @@ npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
 echo ""
 echo "Install dependencies"
 npm install
+
+echo ""
+echo "Test"
+npm run test
+
+for LAMBDA_MODULE in $WORKSPACE/functions/*/
+do
+  (
+    echo ""
+    echo "Move to $LAMBDA_MODULE"
+    cd "$LAMBDA_MODULE"
+
+    echo ""
+    echo "Install dependencies"
+    npm install
+
+    echo ""
+    echo "Test"
+    npm run test
+  )
+done
+
+echo ""
+echo "Move back to WORKSPACE"
+cd "$WORKSPACE"
 
 echo ""
 echo "Update SDK"
@@ -93,3 +114,15 @@ mkdir $WORKSPACE/tmp
 echo ""
 echo "Serverless Setup"
 NODE_ENV=$BLUEMIX_ENV npm run serverless-setup
+
+echo ""
+echo "Move to ARCHIVE_DIR"
+cd $ARCHIVE_DIR
+
+echo ""
+echo "Create Serverless archive"
+$ARCHIVE_DIR/node_modules/.bin/serverless package --package $ARCHIVE_DIR/serverless-package
+
+echo ""
+echo "Generated files into dist"
+ls $ARCHIVE_DIR

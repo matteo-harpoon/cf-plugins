@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-04-06 12:08:00
+# @Last modified time: 2018-04-25 03:38:01
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -23,23 +23,11 @@ elif [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
   exit 1
 fi
 
-echo ""
-echo "Install NPM@5"
-npm install -g npm@5
-
-echo ""
-echo "Install Serverless"
-npm install -g serverless
-
-echo ""
-echo "Set NPM Company and Token"
-npm config set "$NPM_COMPANY:registry" "https://$NPM_URL/"
-npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
-
-echo ""
-echo "Install dependencies"
-npm install
-
+if [ ! -e "$WORKSPACE/node_modules" ]; then
+  echo ""
+  echo "Install dependencies"
+  npm install
+fi
 
 echo ""
 echo "Serverless Config Credentials"
@@ -47,4 +35,4 @@ serverless config credentials --provider aws --key "$AWS_ACCESS_KEY_ID" --secret
 
 echo ""
 echo "Deploy"
-serverless deploy
+serverless deploy --package serverless-package
