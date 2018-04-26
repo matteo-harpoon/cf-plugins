@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-04-25 03:38:01
+# @Last modified time: 2018-04-26 08:31:41
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -22,6 +22,8 @@ elif [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
   echo "Missing environment variable AWS_ACCESS_KEY_ID"
   exit 1
 fi
+
+ls -a .
 
 if [ ! -e "$WORKSPACE/node_modules" ]; then
   echo ""
