@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-04-26 08:31:41
+# @Last modified time: 2018-04-26 08:59:14
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -33,8 +33,8 @@ fi
 
 echo ""
 echo "Serverless Config Credentials"
-serverless config credentials --provider aws --key "$AWS_ACCESS_KEY_ID" --secret "$AWS_SECRET_ACCESS_KEY" --profile tweak-serverless --overwrite
+./node_modules/.bin/serverless config credentials --provider aws --key "$AWS_ACCESS_KEY_ID" --secret "$AWS_SECRET_ACCESS_KEY" --profile tweak-serverless --overwrite
 
 echo ""
 echo "Deploy"
-serverless deploy --package serverless-package
+./node_modules/.bin/serverless deploy --package serverless-package
