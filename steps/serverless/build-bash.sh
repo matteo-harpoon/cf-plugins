@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-06-07 01:46:00
+# @Last modified time: 2018-06-07 02:04:22
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -72,6 +72,10 @@ echo ""
 echo "Set NPM Company and Token"
 npm config set "$NPM_COMPANY:registry" "https://$NPM_URL/"
 npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
+
+echo ""
+echo "Install Serverless Globally"
+npm install -g serverless
 
 echo ""
 echo "Install dependencies"
