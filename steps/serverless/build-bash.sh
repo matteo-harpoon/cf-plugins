@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   Matteo
-# @Last modified time: 2018-04-26 08:59:05
+# @Last modified time: 2018-06-07 01:46:00
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -122,17 +122,13 @@ echo "Serverless Setup"
 NODE_ENV=$BLUEMIX_ENV npm run serverless-setup
 
 echo ""
-echo "Store NPM Company and Token"
-printf "//$NPM_URL/:_authToken=$NPM_TOKEN\n$NPM_COMPANY:registry=https://$NPM_URL/" > "$ARCHIVE_DIR/.npmrc"
-
-echo ""
 echo "Move to ARCHIVE_DIR"
 cd $ARCHIVE_DIR
 
 echo ""
-echo "Create Serverless archive"
-./node_modules/.bin/serverless package --package serverless-package
-
-echo ""
 echo "Generated files into dist"
 ls -a .
+
+echo ""
+echo "Deploy"
+npm run serverless-deploy
