@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   Matteo
-# @Last modified time: 2018-03-02 09:46:07
+# @Last modified time: 2018-07-30 08:22:30
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -78,8 +78,8 @@ ls exported/JavaScript/Unified
 
 echo ""
 echo "Generating Library"
-node codegen.genJavaScriptUnified.js > /dev/null
-node codegen.genJavaScriptUnifiedAngularModels.js --file $WORKSPACE/exported/tweakApi.json --folder $WORKSPACE/exported/JavaScript/Unified/models.angular/ > /dev/null
+node codegen.genJavaScriptUnified.js
+node codegen.genJavaScriptUnifiedAngularModels.js --file $WORKSPACE/exported/tweakApi.json --folder $WORKSPACE/exported/JavaScript/Unified/models.angular/
 
 echo ""
 echo "Configure GIT"
@@ -101,10 +101,6 @@ git commit -m "$GIT_COMMIT_BODY"
 echo ""
 echo "Push code"
 git push pipeline $GIT_BRANCH
-
-echo ""
-echo "Back to Workspace"
-cd "$WORKSPACE"
 
 echo ""
 echo "Back to Workspace"
