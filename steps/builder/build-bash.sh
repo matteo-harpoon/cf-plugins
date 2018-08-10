@@ -60,7 +60,7 @@ npm run "update-sdk-$BLUEMIX_ENV"
 
 echo ""
 echo "Generate Dist"
-NODE_ENV=$BLUEMIX_ENV $WORKSPACE/node_modules/.bin/gulp build
+NODE_ENV=$BLUEMIX_ENV $WORKSPACE/node_modules/.bin/gulp build --minify
 
 echo ""
 echo "Store NPM Company and Token"
