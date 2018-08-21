@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   Matteo
-# @Last modified time: 2018-02-21 02:55:29
+# @Last modified time: 2018-08-21 08:50:53
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -15,6 +15,11 @@ unset ONLINE_DB
 unset MONGO_URL
 unset MONGO_DROP_DB_URL
 unset NODE_ENV
+
+echo ""
+echo "Set NPM Company and Token"
+npm config set "$NPM_COMPANY:registry" "https://$NPM_URL/"
+npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
 
 echo ""
 echo "Install dependencies"

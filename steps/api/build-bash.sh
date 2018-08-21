@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   Matteo
-# @Last modified time: 2018-03-02 09:45:29
+# @Last modified time: 2018-08-21 08:50:09
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -46,12 +46,21 @@ echo "Remove package-lock.json for safety"
 rm package-lock.json
 
 echo ""
+echo "Set NPM Company and Token"
+npm config set "$NPM_COMPANY:registry" "https://$NPM_URL/"
+npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
+
+echo ""
 echo "Install dependencies"
 npm install
 
 echo ""
 echo "Compute locales"
 npm run locales-compute
+
+echo ""
+echo "Store NPM Company and Token"
+printf "//$NPM_URL/:_authToken=$NPM_TOKEN\n$NPM_COMPANY:registry=https://$NPM_URL/" > "$WORKSPACE/.npmrc"
 
 echo ""
 echo "Create local tmp dir"
