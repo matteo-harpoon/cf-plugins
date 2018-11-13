@@ -2,8 +2,8 @@
 
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
-# @Last modified by:   Matteo
-# @Last modified time: 2018-06-07 02:23:17
+# @Last modified by:   matteo
+# @Last modified time: 2018-11-13 12:46:37
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -112,10 +112,11 @@ echo ""
 echo "Move back to WORKSPACE"
 cd "$WORKSPACE"
 
-echo ""
-echo "Update SDK"
-npm remove tweak-api
-npm install https://github.com/tweak-com-public/tweak-api-client-javascript-unified.git#$GIT_BRANCH
+# LAMBDA shouldn't use Tweak API SDK (too big)
+# echo ""
+# echo "Update SDK"
+# npm remove tweak-api
+# npm install https://github.com/tweak-com-public/tweak-api-client-javascript-unified.git#$GIT_BRANCH
 
 echo ""
 echo "Create local tmp dir"
