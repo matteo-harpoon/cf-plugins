@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   matteo
-# @Last modified time: 2018-11-13 12:46:37
+# @Last modified time: 2018-12-05 05:57:59
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -124,7 +124,7 @@ mkdir $WORKSPACE/tmp
 
 echo ""
 echo "Serverless Setup"
-NODE_ENV=$BLUEMIX_ENV npm run serverless-setup
+NODE_ENV=$BLUEMIX_ENV IS_CI=true npm run serverless-setup
 
 echo ""
 echo "Move to ARCHIVE_DIR"
