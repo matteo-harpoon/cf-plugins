@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   matteo
-# @Last modified time: 2018-12-05 05:57:59
+# @Last modified time: 2018-12-05 06:22:40
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -81,9 +81,9 @@ echo ""
 echo "Install dependencies"
 npm install
 
-echo ""
-echo "Test"
-npm run test
+# echo ""
+# echo "Test"
+# npm run test
 
 for LAMBDA_MODULE in $WORKSPACE/functions/*/
 do
@@ -102,9 +102,9 @@ do
     echo "Install dependencies"
     npm install
 
-    echo ""
-    echo "Test"
-    npm run test
+    # echo ""
+    # echo "Test"
+    # npm run test
   )
 done
 
