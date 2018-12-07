@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   matteo
-# @Last modified time: 2018-12-05 06:22:40
+# @Last modified time: 2018-12-07 11:44:17
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -49,6 +49,14 @@ echo "Clone Submodules:"
 if [ -n "$BITBUCKET_USERNAME" ]; then
   if [ -n "$BITBUCKET_PASSWORD" ]; then
     cat .gitmodules | sed -r s/bitbucket.org/$BITBUCKET_USERNAME:$BITBUCKET_PASSWORD@bitbucket.org/ > .gitmodules.tmp
+    rm .gitmodules
+    mv .gitmodules.tmp .gitmodules
+  fi
+fi
+
+if [ -n "$GITLAB_USERNAME" ]; then
+  if [ -n "$GITLAB_PASSWORD" ]; then
+    cat .gitmodules | sed -r s/gitlab.com/$GITLAB_USERNAME:$GITLAB_PASSWORD@gitlab.com/ > .gitmodules.tmp
     rm .gitmodules
     mv .gitmodules.tmp .gitmodules
   fi
