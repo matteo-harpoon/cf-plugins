@@ -2,8 +2,8 @@
 
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
-# @Last modified by:   Matteo
-# @Last modified time: 2018-02-22 04:16:59
+# @Last modified by:   matteo
+# @Last modified time: 2019-02-04 11:07:57
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -46,6 +46,11 @@ echo "Remove package-lock.json for safety"
 rm package-lock.json
 
 echo ""
+echo "Set NPM Company and Token"
+npm config set "$NPM_COMPANY:registry" "https://$NPM_URL/"
+npm config set "//$NPM_URL/:_authToken" "$NPM_TOKEN"
+
+echo ""
 echo "Install dependencies"
 npm install
 
@@ -56,6 +61,10 @@ npm run "update-sdk-$BLUEMIX_ENV"
 echo ""
 echo "Generate Dist"
 NODE_ENV=$BLUEMIX_ENV $WORKSPACE/node_modules/.bin/gulp build
+
+echo ""
+echo "Store NPM Company and Token"
+printf "//$NPM_URL/:_authToken=$NPM_TOKEN\n$NPM_COMPANY:registry=https://$NPM_URL/" > "$ARCHIVE_DIR/.npmrc"
 
 echo ""
 echo "Generated files into dist"
