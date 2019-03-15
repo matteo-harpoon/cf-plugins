@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-15 02:59:09
+# @Last modified time: 2019-03-15 05:27:11
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -108,9 +108,9 @@ do
     git checkout $GIT_BRANCH
     git pull origin $GIT_BRANCH
 
-    echo ""
-    echo "Install dependencies"
-    npm install
+    # echo ""
+    # echo "Install dependencies"
+    # npm install
 
     # echo ""
     # echo "Test"
