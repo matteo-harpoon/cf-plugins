@@ -2,10 +2,12 @@
 
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
-# @Last modified by:   Matteo
-# @Last modified time: 2018-08-21 08:50:53
+# @Last modified by:   matteo
+# @Last modified time: 2019-03-15 03:00:30
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
+
+set -e
 
 echo ""
 echo "Move to WORKSPACE"
