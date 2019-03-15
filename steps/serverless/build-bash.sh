@@ -3,11 +3,25 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-15 05:27:11
+# @Last modified time: 2019-03-15 06:03:05
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
 set -e
+
+echo ""
+echo "Install PKG-Config"
+wget http://archive.ubuntu.com/ubuntu/pool/main/p/pkg-config/pkg-config_0.26-1ubuntu4_amd64.deb
+sudo dpkg -i $WORKSPACE/pkg-config_0.26-1ubuntu4_amd64.deb
+
+echo ""
+echo "Install Lib"
+sudo apt-get update
+sudo apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+
+echo ""
+echo "Install Node-GYP"
+npm install -g node-gyp
 
 echo ""
 echo "Move to WORKSPACE"
@@ -108,9 +122,9 @@ do
     git checkout $GIT_BRANCH
     git pull origin $GIT_BRANCH
 
-    # echo ""
-    # echo "Install dependencies"
-    # npm install
+    echo ""
+    echo "Install dependencies"
+    npm install
 
     # echo ""
     # echo "Test"
