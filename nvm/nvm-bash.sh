@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <matteo>
 # @Date:   2019-03-19 10:33:43
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-19 10:42:26
+# @Last modified time: 2019-03-19 02:42:55
 
 
 echo " "
@@ -37,8 +37,13 @@ npm config delete prefix
 
 echo " "
 echo "= = = = = = = = = = = "
-echo "Installing the latest version of nodejs"
-nvm install 9.1.0
+if [ -z "$NODE_VERSION" ]; then
+  echo "Installing the 9.1.0 version of nodejs"
+  nvm install 9.1.0
+else
+  echo "Installing the $NODE_VERSION version of nodejs"
+  nvm install $NODE_VERSION
+fi
 
 # remember to add below directory name to 
 # Build Archive Directory field of this configuration
