@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <matteo>
 # @Date:   2019-03-19 10:33:43
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-19 02:42:55
+# @Last modified time: 2019-03-19 02:52:14
 
 
 echo " "
@@ -43,6 +43,11 @@ if [ -z "$NODE_VERSION" ]; then
 else
   echo "Installing the $NODE_VERSION version of nodejs"
   nvm install $NODE_VERSION
+fi
+
+if [ -n "$NPM_VERSION" ]; then
+  echo "Installing the $NPM_VERSION version of npm"
+  npm install -g npm@$NPM_VERSION
 fi
 
 # remember to add below directory name to 
