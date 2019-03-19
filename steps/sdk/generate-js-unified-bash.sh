@@ -3,11 +3,11 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:37:21
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-15 02:59:36
-
-export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
+# @Last modified time: 2019-03-19 10:41:06
 
 set -e
+
+source ../../nvm/nvm-bash.sh
 
 echo ""
 echo "Move to WORKSPACE"

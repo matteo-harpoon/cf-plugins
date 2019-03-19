@@ -3,11 +3,11 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-15 06:03:05
-
-export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
+# @Last modified time: 2019-03-19 10:41:13
 
 set -e
+
+source ../../nvm/nvm-bash.sh
 
 echo ""
 echo "Install PKG-Config"
