@@ -7,7 +7,7 @@
 
 set -e
 
-source ../../nvm/nvm-bash.sh
+source $WORKSPACE/cf-plugins/nvm/nvm-bash.sh
 
 echo ""
 echo "Move to WORKSPACE"

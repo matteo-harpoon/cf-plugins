@@ -3,11 +3,11 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-19 10:40:10
+# @Last modified time: 2019-03-19 10:44:07
 
 set -e
 
-source ../../nvm/nvm-bash.sh
+source $WORKSPACE/cf-plugins/nvm/nvm-bash.sh
 
 echo ""
 echo "Move to WORKSPACE"
