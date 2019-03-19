@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 02:40:39
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-15 03:00:30
+# @Last modified time: 2019-03-19 09:59:26
 
 export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
 
@@ -60,6 +60,11 @@ sleep 5
 echo ""
 echo "Test ACLs and Security"
 NODE_ENV=test ./node_modules/.bin/mocha --opts "./test/security-acl/mocha.opts"
+sleep 5
+
+echo ""
+echo "Test DAM"
+NODE_ENV=test ./node_modules/.bin/mocha --opts "./test/dam/integration/mocha.opts"
 sleep 5
 
 # TODO: implement this instead
