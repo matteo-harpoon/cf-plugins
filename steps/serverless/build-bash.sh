@@ -3,7 +3,7 @@
 # @Author: Matteo Zambon <Matteo>
 # @Date:   2018-02-21 03:11:18
 # @Last modified by:   matteo
-# @Last modified time: 2019-03-19 10:41:13
+# @Last modified time: 2019-03-19 03:00:25
 
 set -e
 
@@ -122,9 +122,9 @@ do
     git checkout $GIT_BRANCH
     git pull origin $GIT_BRANCH
 
-    echo ""
-    echo "Install dependencies"
-    npm install
+    # echo ""
+    # echo "Install dependencies"
+    # npm install
 
     # echo ""
     # echo "Test"
