@@ -29,7 +29,7 @@ npm install
 
 echo ""
 echo "Unit test"
-NODE_ENV=test UNIT_TEST=true ./node_modules/.bin/mocha --opts \"./test/unit/mocha.opts\"
+NODE_ENV=test UNIT_TEST=true ./node_modules/.bin/mocha --opts "./test/unit/mocha.opts"
 sleep 5
 
 echo ""
