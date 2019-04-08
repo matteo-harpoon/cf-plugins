@@ -28,6 +28,11 @@ echo "Install dependencies"
 npm install
 
 echo ""
+echo "Unit test"
+NODE_ENV=test UNIT_TEST=true ./node_modules/.bin/mocha --opts \"./test/unit/mocha.opts\"
+sleep 5
+
+echo ""
 echo "Test Models"
 NODE_ENV=test ./node_modules/.bin/mocha --opts "./test/models/mocha.opts"
 sleep 5
@@ -39,7 +44,7 @@ sleep 5
 
 echo ""
 echo "Test Billings"
-NODE_ENV=test ./node_modules/.bin/mocha --opts "./test/billings/mocha.opts"
+NO_STRIPE=false NODE_ENV=test ./node_modules/.bin/mocha --opts "./test/billings/mocha.opts"
 sleep 5
 
 echo ""
